@@ -21,7 +21,7 @@ namespace TechJobsOO
             Id = nextId;
             nextId++;
         }
-        public Job(string name, string employerName, string employerLocation, string jobType, string jobCoreCompetency) : this()
+        public Job(string name, object employerName, object employerLocation, object jobType, object jobCoreCompetency) : this()
         {
             Name = name;
             EmployerName = new Employer(employerName.ToString());
