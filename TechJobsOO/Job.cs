@@ -21,13 +21,13 @@ namespace TechJobsOO
             Id = nextId;
             nextId++;
         }
-        public Job(string name, object employerName, object employerLocation, object jobType, object jobCoreCompetency) : this()
+        public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
         {
             Name = name;
-            EmployerName = new Employer(employerName.ToString());
-            EmployerLocation = new Location(employerLocation.ToString());
-            JobType = new PositionType(jobType.ToString());
-            JobCoreCompetency = new CoreCompetency(jobCoreCompetency.ToString());
+            EmployerName = employerName;
+            EmployerLocation = employerLocation;
+            JobType = jobType;
+            JobCoreCompetency = jobCoreCompetency;
         }
         // TODO: Generate Equals() and GetHashCode() methods.
         public override bool Equals(object obj)
@@ -39,6 +39,24 @@ namespace TechJobsOO
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
+        }
+        public override string ToString()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(Name))
+                {
+                    Name = "Data not avaliable";
+                }
+
+                return $"\nID: {Id} \nName: {Name} \nEmployer: {EmployerName.ToString()} " +
+                    $"\nLocation: {EmployerLocation.ToString()} \nPosition Type: {JobType.ToString()} " +
+                    $"\nCore Competency: {JobCoreCompetency.ToString()} \n";
+            }
+            catch (NullReferenceException)
+            {
+                return "OOPS! This job does not seem to exist.";
+            }
         }
     }
 }
